@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+// import ErrorModal from "../UI/ErrorModal";
 
 import "./UsersList.css";
 
@@ -9,6 +10,7 @@ const UsersList = ({ users }) => {
   const [userList, updateUserList] = useState([]);
 
   const deleteUser = (user) => {
+    // TODO: A "Confirm Delete" dialog/modal
     let userIndex = users.indexOf(user);
     users.splice(userIndex, 1);
     updateUserList((prevList) => {
