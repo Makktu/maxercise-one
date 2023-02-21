@@ -1,0 +1,21 @@
+button {
+  margin-top: 20px;
+  transition: 0.25s;
+}
+
+.submit-btn {
+  background: rgb(68, 151, 48);
+  transition: 0.25s;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  background: rgb(44, 90, 31);
+  color: yellow;
+  transition: 0.5s ease;
+}
+
+.warning {
+  background: red;
+  color: yellow;
+}
