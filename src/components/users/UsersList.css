@@ -16,3 +16,7 @@
   color: rgb(9, 9, 9);
   background: rgb(159, 185, 75);
 }
+
+button {
+  background-color: brown;
+}

@@ -15,6 +15,10 @@ const App = () => {
     });
   };
 
+  const deleteUser = (key) => {
+    console.log("Well somehow", key);
+  };
+
   return (
     <>
       <AddUser onAddUser={addUserHandler} />

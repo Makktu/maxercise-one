@@ -19,3 +19,9 @@ button:hover {
   background: red;
   color: yellow;
 }
+
+.delete-user {
+  background: yellow;
+  color: black;
+  margin-left: 20px;
+}
