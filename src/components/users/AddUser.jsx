@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -7,20 +7,23 @@ import ErrorModal from "../UI/ErrorModal";
 import "./AddUser.css";
 
 const AddUser = (props) => {
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
-    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+    const enteredName = nameInputRef.current.value;
+    const enteredUserAge = ageInputRef.current.value;
+    if (enteredName.trim().length === 0 || enteredUserAge.trim().length === 0) {
       setError({
         title: "You must fill everything in !",
         message: "Please enter a valid name and age (greater than 0)",
       });
       return;
     }
-    if (+enteredAge < 1) {
+    if (+enteredUserAge < 1) {
       setError({
         title: "Not a valid age!",
         message: "Please enter a valid name and age (greater than 0)",
@@ -29,20 +32,11 @@ const AddUser = (props) => {
     }
 
     // if user enters name with a lowercase first letter, this capitalises
-    let fixedUsername =
-      enteredUsername[0].toUpperCase() + enteredUsername.slice(1);
+    let fixedUsername = enteredName[0].toUpperCase() + enteredName.slice(1);
 
-    props.onAddUser(fixedUsername, enteredAge);
-    setEnteredAge("");
-    setEnteredUsername("");
-  };
-
-  const usernameChangeHandler = () => {
-    setEnteredUsername(event.target.value);
-  };
-
-  const ageChangeHandler = () => {
-    setEnteredAge(event.target.value);
+    props.onAddUser(fixedUsername, enteredUserAge);
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
   };
 
   const errorHandler = () => {
@@ -50,7 +44,7 @@ const AddUser = (props) => {
   };
 
   return (
-    <div>
+    <>
       {error && (
         <ErrorModal
           onOkay={errorHandler}
@@ -58,24 +52,13 @@ const AddUser = (props) => {
           message={error.message}
         />
       )}
-
       <Card>
         <div className="form-container">
           <form onSubmit={addUserHandler}>
             <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              value={enteredUsername}
-              onChange={usernameChangeHandler}
-            />
+            <input id="username" type="text" ref={nameInputRef} />
             <label htmlFor="age">Age (Years)</label>
-            <input
-              id="age"
-              type="number"
-              value={enteredAge}
-              onChange={ageChangeHandler}
-            />
+            <input id="age" type="number" ref={ageInputRef} />
             <Button
               type="submit"
               theType="submit-btn"
@@ -86,7 +69,7 @@ const AddUser = (props) => {
           </form>
         </div>
       </Card>
-    </div>
+    </>
   );
 };
 

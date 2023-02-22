@@ -1,7 +1,9 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 import Card from "./Card";
 import Button from "./Button";
+import Backdrop from "./ModalBackdrop";
 
 const DeleteModal = (props) => {
   return (
