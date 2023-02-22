@@ -58,7 +58,7 @@ const AddUser = (props) => {
           message={error.message}
         />
       )}
-      ;
+
       <Card>
         <div className="form-container">
           <form onSubmit={addUserHandler}>

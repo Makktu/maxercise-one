@@ -25,3 +25,13 @@ button:hover {
   color: black;
   margin-left: 20px;
 }
+
+.okay {
+  background: rgb(36, 243, 4);
+  color: black;
+}
+
+.cancel {
+  background: red;
+  color: black;
+}

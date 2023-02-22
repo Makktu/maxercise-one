@@ -2,12 +2,13 @@ import React, { useState } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-// import ErrorModal from "../UI/ErrorModal";
+import DeleteModal from "../UI/DeleteModal";
 
 import "./UsersList.css";
 
 const UsersList = ({ users }) => {
   const [userList, updateUserList] = useState([]);
+  const [deleteChoice, updateDeleteChoice] = useState(false);
 
   const deleteUser = (user) => {
     // TODO: A "Confirm Delete" dialog/modal
@@ -18,19 +19,27 @@ const UsersList = ({ users }) => {
     });
   };
 
+  const deleteHandler = (user) => {
+    updateDeleteChoice(!deleteChoice);
+    // if (deleteChoice) deleteUser(user);
+  };
+
   return (
-    <Card className={"users"}>
-      <ul>
-        {users.map((user) => (
-          <li key={user.key}>
-            {user.username} : {user.age} Years old
-            <Button theType="delete-user" onClick={() => deleteUser(user)}>
-              Delete
-            </Button>
-          </li>
-        ))}
-      </ul>
-    </Card>
+    <>
+      {deleteChoice && <DeleteModal />}
+      <Card className={"users"}>
+        <ul>
+          {users.map((user) => (
+            <li key={user.key}>
+              {user.username} : {user.age} Years old
+              <Button theType="delete-user" onClick={() => deleteHandler(user)}>
+                Delete
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </Card>
+    </>
   );
 };
 
