@@ -15,8 +15,12 @@ const DeleteModal = (props) => {
             <p>You cannot undo this. Press OK to Delete. Cancel to Cancel.</p>
           </div>
           <footer className="actions">
-            <Button theType="cancel">CANCEL</Button>
-            <Button theType="okay">OK</Button>
+            <Button theType="cancel" onClick={props.onCancel}>
+              CANCEL
+            </Button>
+            <Button theType="okay" onClick={props.onOkay}>
+              OK
+            </Button>
           </footer>
         </Card>
       </div>
